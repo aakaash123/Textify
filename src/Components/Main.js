@@ -8,6 +8,7 @@ function Main() {
   const [extractedText, setExtractedText] = useState('');
   const [fileName, setFileName] = useState('No file chosen...');
   const [file, setFile] = useState(null);
+  const [textCopied, setTextCopied] = useState(false);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -67,6 +68,7 @@ function Main() {
             textField.select();
             document.execCommand('copy');
             textField.remove();
+            setTextCopied(true);
     }
 
   return (
@@ -105,7 +107,7 @@ function Main() {
         <p class="card__description">{extractedText}</p>
 
         <div class="card__actions">
-          <div onClick={copyText} class="card__button" target="_blank">Copy Text</div>
+          <div onClick={copyText} class="card__button" target="_blank">{textCopied ? "copied..." : "Copy Text"}</div>
           <div target="_blank" onClick={startOver} class="card__button">Start Over</div>
         </div>
       </article>
