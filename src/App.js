@@ -6,6 +6,17 @@ import Main from './Components/Main.js';
 
 const App = () => {
   const [init, setInit] = useState(false);
+  const [show, setShow] = useState(true); // Initially show is true
+
+    useEffect(() => {
+      // Set a timeout to hide the content after 5000 milliseconds
+      const timer = setTimeout(() => {
+        setShow(false); // This will hide the content after 5 seconds
+      }, 5000);
+
+      // Cleanup function to clear the timer if the component unmounts
+      return () => clearTimeout(timer);
+    }, []);
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -116,6 +127,12 @@ const App = () => {
           }}
         >
           <div>
+                {show && <div class="hero">
+                  <h1 class="text-reveal">
+                    <span>TEXT REVEAL</span>
+                    <span aria-hidden="true">Textify</span>
+                  </h1>
+                </div>}
                 <Main />
           </div>
         </div>
