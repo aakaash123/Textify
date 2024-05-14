@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Main.css'; // Import your CSS file (if applicable)
 import Tesseract from 'tesseract.js';
-import $ from 'jquery';
 
 function Main() {
   const [processingText, setProcessingText] = useState(false);
@@ -73,7 +72,7 @@ function Main() {
 
   return (
     <div className="ring-container"> {/* Wrap rings in a container */}
-    { extractedText == '' && (
+    { extractedText === '' && (
       <div className="ring">
         <i style={{ '--clr': '#00ff0a' }}></i>
         <i style={{ '--clr': '#ff0057' }}></i>
