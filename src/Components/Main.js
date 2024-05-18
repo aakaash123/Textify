@@ -73,11 +73,6 @@ function Main() {
   return (
     <div className="ring-container"> {/* Wrap rings in a container */}
     { extractedText === '' && (
-      <div className="ring">
-        <i style={{ '--clr': '#00ff0a' }}></i>
-        <i style={{ '--clr': '#ff0057' }}></i>
-        <i style={{ '--clr': '#fffd44' }}></i>
-
         <label className="upload-image">
           <div className="file-upload">
                 <div className="file-select">
@@ -97,7 +92,6 @@ function Main() {
               </div>
           <button onClick={handleButtonClick}>{processingText ? "Extracting ...." : "Extract text" }</button>
         </label>
-      </div>
      )}
       {extractedText && (
 

@@ -13,68 +13,13 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #111;
   width: 100%;
   overflow: hidden;
 }
 
-.ring {
-  position: relative;
-  width: 600px;
-  height: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ring i {
-  position: absolute;
-  inset: 0;
-  border: 2px solid #fff;
-  transition: 0.5s;
-}
-
-.ring i:nth-child(1) {
-  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-  animation: animate 6s linear infinite;
-}
-
-.ring i:nth-child(2) {
-  border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
-  animation: animate 4s linear infinite;
-}
-
-.ring i:nth-child(3) {
-  border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
-  animation: animate2 10s linear infinite;
-}
-
-.ring:hover i {
-  border: 6px solid var(--clr);
-  filter: drop-shadow(0 0 20px var(--clr));
-}
-
-@keyframes animate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes animate2 {
-  0% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 /* Upload button styles */
 .upload-image {
-  display: inline-block;
+  display: flex;
   border-radius: 5px;
   cursor: pointer;
   color: gray; /* Adjust text color */
@@ -93,18 +38,6 @@ body {
   font-family: FontAwesome; /* Adjust font family for your icon */
 }
 
-.ring-container {
-  display: flex;
-  flex-direction: column; /* Stack vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-  position: fixed; /* Ensures absolute positioning relative to viewport */
-  top: 0; /* Place at the top of the screen */
-  left: 0; /* Place at the left of the screen */
-  width: 100%; /* Span the entire width of the viewport */
-  height: 100vh; /* Match viewport height for vertical centering */
-  z-index: 1; /* Optional: Ensure the ring-container is above other elements */
-}
 
 
 @import "https://unpkg.com/open-props@1.6.17/easings.min.css";
@@ -147,10 +80,7 @@ body {
     );
   }
 
-  html,
-  body {
-    background-color: var(--white);
-  }
+
 
   * {
     font-family: inherit;
@@ -162,6 +92,7 @@ body {
     all: unset;
     background-color: var(--white);
     padding: 12px 50px;
+    margin-left: 100px;
     border-radius: 6px;
     font-size: 0.875rem;
     text-transform: uppercase;
@@ -215,10 +146,10 @@ body {
   }
 
 
-.file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
-.file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
-.file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
-.file-upload .file-select .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
+.file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;margin-left:120px;border-radius:50%}
+.file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:45px;line-height:45px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+.file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:45px;line-height:45px;}
+.file-upload .file-select .file-select-name{line-height:45px;display:inline-block;padding:0 10px;}
 .file-upload .file-select:hover{border-color:#34495e;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
 .file-upload .file-select:hover .file-select-button{background:#34495e;color:black;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
 .file-upload.active .file-select{border-color:#3fa46a;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
@@ -227,7 +158,7 @@ body {
 .file-upload .file-select.file-select-disabled{opacity:0.65;}
 .file-upload .file-select.file-select-disabled:hover{cursor:default;display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;margin-top:5px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
 .file-upload .file-select.file-select-disabled:hover .file-select-button{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
-.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
+.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:45px;display:inline-block;padding:0 10px;}
 
 .card {
   isolation: isolate;
@@ -255,9 +186,6 @@ body {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  background-size: cover;
-  background-position: center;
-  background-image: url("https://i.imgur.com/YvUPGUK.jpg");
   font: 100%/1.6 'Open Sans', sans-serif;
 }
 

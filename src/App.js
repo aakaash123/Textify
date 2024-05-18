@@ -1,153 +1,94 @@
-import React, { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import './App.css'
-import Main from './Components/Main.js';
+import React from "react";
+import './App.css';
+import Homepage from './Components/Homepage.js';
 
 const App = () => {
-  const [init, setInit] = useState(false);
-  const [show, setShow] = useState(true); // Initially show is true
-
-    useEffect(() => {
-      // Set a timeout to hide the content after 5000 milliseconds
-      const timer = setTimeout(() => {
-        setShow(false); // This will hide the content after 5 seconds
-      }, 5000);
-
-      // Cleanup function to clear the timer if the component unmounts
-      return () => clearTimeout(timer);
-    }, []);
-
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
-
-  const particlesLoaded = (container) => {
-    console.log(container);
-  };
-
-  const options = useMemo(
-    () => ({
-      background: {
-        color: {
-          value: "#0d47a1",
-        },
-      },
-      fpsLimit: 120,
-      interactivity: {
-        events: {
-          onClick: {
-            enable: true,
-            mode: "push",
-          },
-          onHover: {
-            enable: true,
-            mode: "repulse",
-          },
-        },
-        modes: {
-          push: {
-            quantity: 4,
-          },
-          repulse: {
-            distance: 200,
-            duration: 0.4,
-          },
-        },
-      },
-      particles: {
-        color: {
-          value: "#ffffff",
-        },
-        links: {
-          color: "#ffffff",
-          distance: 150,
-          enable: true,
-          opacity: 0.5,
-          width: 1,
-        },
-        move: {
-          direction: "none",
-          enable: true,
-          outModes: {
-            default: "bounce",
-          },
-          random: false,
-          speed: 6,
-          straight: false,
-        },
-        number: {
-          density: {
-            enable: true,
-          },
-          value: 80,
-        },
-        opacity: {
-          value: 0.5,
-        },
-        shape: {
-          type: "circle",
-        },
-        size: {
-          value: { min: 1, max: 5 },
-        },
-      },
-      detectRetina: true,
-    }),
-    []
-  );
-
-  if (init) {
     return (
-      <div style={{ position: "relative", width: "100%", height: "100%" }}>
-        {/* Dynamic Background Content */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "url(path_to_your_image_or_background_content)",
-            backgroundSize: "cover",
-            zIndex: 1, // Set z-index higher than particles
-          }}
-        />
-        {/* Additional Content on Upper Layer */}
-        <div
-          style={{
-            position: "absolute",
-            top: 20, // Adjust top position as needed
-            left: 20, // Adjust left position as needed
-            zIndex: 2, // Set z-index higher than background and particles
-          }}
-        >
-          <div>
-                {show && <div class="hero">
-                  <h1 class="text-reveal">
-                    <span>TEXT REVEAL</span>
-                    <span aria-hidden="true">Textify</span>
-                  </h1>
-                </div>}
-                <Main />
-          </div>
-        </div>
-        {/* Particle Effect */}
-        <Particles
-          id="tsparticles"
-          particlesLoaded={particlesLoaded}
-          options={options}
-          style={{ position: "absolute", top: 0, left: 0, zIndex: 0 }} // Ensure particles are displayed below the background content
-        />
-      </div>
-    );
-  }
+        <div>
+              <svg className="svg-filters" width="0" height="0" viewBox="0 0 0 0" xmlns="http://www.w3.org/2000/svg" version="1.1" style={{ position: 'absolute', visibility: 'hidden' }}>
+                <defs>
+                  <filter id="watercolor">
+                    <feTurbulence seed="1" result="noise" type="fractalNoise" baseFrequency="0.0015" numOctaves="4" />
+                    <feColorMatrix type="saturate" values="0" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="20 0 0 0 -4
+                              0 20 0 0 -4
+                              0 0 20 0 -4
+                              0 0 0 1 1">
+                      <animate
+                        attributeName="values"
+                        values="20 0 0 0 -14
+                                0 20 0 0 -14
+                                0 0 20 0 -14
+                                0 0 0 1 1;
+                                20 0 0 0 -4
+                                0 20 0 0 -4
+                                0 0 20 0 -4
+                                0 0 0 1 1"
+                        dur="10s"
+                        repeatCount="1" />
+                    </feColorMatrix>
+                    <feColorMatrix result="fill" type="luminanceToAlpha" />
+                    <feConvolveMatrix
+                      in="SourceGraphic"
+                      kernelMatrix="3 0 0
+                                    0 0 0
+                                    0 0 -2" />
+                    <feColorMatrix type="saturate" values="0" />
+                    <feColorMatrix
+                      type="matrix"
+                      result="line"
+                      values="9 0 0 0 -1
+                              0 9 0 0 -1
+                              0 0 9 0 -1
+                              0 0 0 1 1" />
+                    <feColorMatrix in="noise" type="saturate" values="0" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="20 0 0 0 -4
+                              0 20 0 0 -4
+                              0 0 20 0 -4
+                              0 0 0 1 1">
+                      <animate
+                        attributeName="values"
+                        values="20 0 0 0 -14
+                                0 20 0 0 -14
+                                0 0 20 0 -14
+                                0 0 0 1 1;
+                                20 0 0 0 -4
+                                0 20 0 0 -4
+                                0 0 20 0 -4
+                                0 0 0 1 1"
+                        dur="30s"
+                        repeatCount="1" />
+                    </feColorMatrix>
+                    <feColorMatrix result="fill2" type="luminanceToAlpha" />
+                    <feFlood result="flood" floodColor="#fff" />
+                    <feComposite in="line" in2="fill" operator="in" />
+                    <feComposite result="fill3" in="fill2" operator="and" />
+                    <feComposite in2="flood" operator="and" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="-1 0 0 0 1
+                              0 -1 0 0 1
+                              0 0 -1 0 1
+                              0 0 0 1 0" />
+                    <feColorMatrix result="fill4" type="luminanceToAlpha" />
+                    <feComposite in="SourceGraphic" in2="fill4" operator="in" />
+                    <feComposite in2="SourceAlpha" operator="in" />
+                  </filter>
+                </defs>
+              </svg>
 
-  return <></>;
+              <img
+                src="https://images.unsplash.com/photo-1582201943021-e8e5cb6dedc2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTk4NTAzNDF8&ixlib=rb-4.0.3&q=85"
+                alt="watercolor"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'url(#watercolor)' }}
+              />
+              <Homepage />
+            </div>
+    );
 };
 
 export default App;
